@@ -1,34 +1,35 @@
-function mapGalleryResultToJson(json) {
-  let result = JSON.parse(json).result;
-  return JSON.stringify(result.map(e => {
-    return {
-      title: e.title.pretty,
-      thumbnailUrl: 'https://t5.nhentai.net/galleries/' +
-        e.mediaId +
-        '/thumb.' +
-        getImageType(e.images.thumbnail.t),
-      coverUrl: 'https://t5.nhentai.net/galleries/' +
-        e.mediaId +
-        '/cover.' +
-        getImageType(e.images.cover.t),
-      tags: e.tags.map(e => e.name),
-      pagesUrl: e.images.pages.map((e, index) => 'https://t5.nhentai.net/galleries/' +
-        e.mediaId +
-        '/' + index + 't.' + getImageType(e.t)),
-      sourceUrl: e.images.pages.map((e, index) => 'https://i.nhentai.net/galleries/' +
-        e.mediaId +
-        '/' + index + '.' + getImageType(e.t)),
-    };
-  }));
+function mapToConcreteView(json) {
+  let item = JSON.parse(json);
+  return JSON.stringify({
+    title: {
+      pretty: item.title.pretty,
+      original: item.title.japanese
+    },
+    cover: 'https://t5.nhentai.net/galleries/' +
+      item.media_id +
+      '/cover.' +
+      getImageType(item.images.cover.t),
+    tags: item.tags.map(e => e.name),
+    chapters: [
+      {
+        title: 'Chapter 1',
+        pages: item.images.pages.map((e, index) => 'https://i.nhentai.net/galleries/'
+          + item.media_id +
+          '/' + index + '.' + getImageType(e.t)),
+        timestamp: item.upload_date
+      }
+    ]
+  });
 }
 
 function mapToGalleryView(json) {
   let result = JSON.parse(json).result;
   return JSON.stringify(result.map(e => {
     return {
+      uid: e.id.toString(),
       title: e.title.pretty,
       cover: 'https://t5.nhentai.net/galleries/' +
-        e.mediaId +
+        e.media_id +
         '/thumb.' +
         getImageType(e.images.thumbnail.t),
     }
@@ -45,6 +46,24 @@ function getEndpoints() {
       path: '/galleries/all',
       type: 'GALLERY',
       mappingFunctionName: 'mapToGalleryView',
+      paths: [],
+      parameters: [
+        {
+          name: 'page',
+          type: 'PAGINATION'
+        }
+      ]
+    },
+    {
+      path: '/gallery/{id}',
+      type: 'CONCRETE',
+      mappingFunctionName: 'mapToConcreteView',
+      paths: [
+        {
+          name: 'id',
+          type: 'ID'
+        }
+      ],
       parameters: [
         {
           name: 'page',
