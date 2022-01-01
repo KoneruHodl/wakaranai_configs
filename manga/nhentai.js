@@ -30,6 +30,7 @@ function getEndpoints() {
   return JSON.stringify([
     {
       path: '/galleries/all',
+      type: 'GALLERY',
       mappingFunctionName: 'mapGalleryResultToJson',
       parameters: [
         {
