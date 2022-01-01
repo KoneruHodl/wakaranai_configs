@@ -22,6 +22,19 @@ function mapGalleryResultToJson(json) {
   }));
 }
 
+function mapToGalleryView(json) {
+  let result = JSON.parse(json).result;
+  return JSON.stringify(result.map(e => {
+    return {
+      title: e.title.pretty,
+      cover: 'https://t5.nhentai.net/galleries/' +
+        e.mediaId +
+        '/thumb.' +
+        getImageType(e.images.thumbnail.t),
+    }
+  }))
+}
+
 function getHost() {
   return 'https://nhentai.net/api';
 }
@@ -31,7 +44,7 @@ function getEndpoints() {
     {
       path: '/galleries/all',
       type: 'GALLERY',
-      mappingFunctionName: 'mapGalleryResultToJson',
+      mappingFunctionName: 'mapToGalleryView',
       parameters: [
         {
           name: 'page',
