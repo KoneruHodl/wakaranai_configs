@@ -17,7 +17,7 @@ function mapToConcreteView(json) {
         pages: item.images.pages.map((e, index) => 'https://i.nhentai.net/galleries/'
           + item.media_id +
           '/' + index + '.' + getImageType(e.t)),
-        timestamp: item.upload_date
+        timestamp: parseInt(item.upload_date.toString() + '000')
       }
     ]
   });
