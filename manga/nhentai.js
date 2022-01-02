@@ -5,6 +5,7 @@ function mapToConcreteView(json) {
       pretty: item.title.pretty,
       original: item.title.japanese
     },
+    description: '',
     cover: 'https://t5.nhentai.net/galleries/' +
       item.media_id +
       '/cover.' +
