@@ -64,12 +64,7 @@ function getEndpoints() {
           type: 'ID'
         }
       ],
-      parameters: [
-        {
-          name: 'page',
-          type: 'PAGINATION'
-        }
-      ]
+      parameters: []
     }
   ]);
 }
