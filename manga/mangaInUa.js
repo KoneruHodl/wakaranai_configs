@@ -11,12 +11,42 @@ function mapToGalleryView(html) {
         new (require('fast-html-dom-parser')).FastHTMLParser(html)
             .getElementsByClassName('movie').slice(0, -1)
             .map(e => {
-                return {
-                    uid: e.getElementsByTagName('h3')[0].getElementsByTagName('a')[0]
-                        .getAttribute('href').split('/')[5].split('-')[0],
-                    title: e.getElementsByTagName('h3')[0].getElementsByTagName('a')[0].textContent,
-                    cover: getHost() + e.getElementsByTagName('figure')[0]
+
+                let uid = null;
+                let title = null;
+                let cover = null;
+
+                if (e.getElementsByTagName('h3')[0] == undefined ||
+                    e.getElementsByTagName('h3')[0].getElementsByTagName('a')[0] == undefined ||
+                    e.getElementsByTagName('h3')[0].getElementsByTagName('a')[0].getAttribute('href') == undefined) {
+                    uid = '';
+                } else {
+                    uid = e.getElementsByTagName('h3')[0].getElementsByTagName('a')[0]
+                        .getAttribute('href').split('/')[5].split('-')[0]
+                }
+
+                if (e.getElementsByTagName('h3')[0] == undefined ||
+                    e.getElementsByTagName('h3')[0].getElementsByTagName('a')[0] == undefined) {
+                    title = '';
+                } else {
+                    title = e.getElementsByTagName('h3')[0].getElementsByTagName('a')[0].textContent;
+                }
+
+                if (e.getElementsByTagName('figure')[0] == undefined ||
+                    e.getElementsByTagName('figure')[0].getElementsByTagName('img')[0] == undefined ||
+                    e.getElementsByTagName('figure')[0]
+                        .getElementsByTagName('img')[0].getAttribute('data-src') == undefined
+                ) {
+                    cover = '';
+                } else {
+                    cover = getHost() + e.getElementsByTagName('figure')[0]
                         .getElementsByTagName('img')[0].getAttribute('data-src')
+                }
+
+                return {
+                    uid: uid,
+                    title: title,
+                    cover: cover
                 }
             }));
 
