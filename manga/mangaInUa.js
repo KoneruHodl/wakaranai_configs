@@ -112,6 +112,18 @@ function getEndpoints() {
             parameters: []
         },
         {
+            path: '/mangas/{id}',
+            type: 'CONCRETE',
+            mappingFunctionName: 'mapToConcreteView',
+            paths: [
+              {
+                name: 'id',
+                type: 'ID'
+              }
+            ],
+            parameters: []
+        },
+        {
             path: '/chapters/{id}',
             type: 'CHAPTER',
             mappingFunctionName: 'mapToChapter',
