@@ -13,11 +13,12 @@ function mapToConcreteView(json) {
     tags: item.tags.map(e => e.name),
     chapters: [
       {
+        uid: item.media_id,
         title: 'Chapter 1',
         pages: item.images.pages.map((e, index) => 'https://i.nhentai.net/galleries/'
           + item.media_id +
           '/' + index + '.' + getImageType(e.t)),
-        timestamp: parseInt(item.upload_date.toString() + '000')
+        timestamp: item.upload_date.toString() + '000'
       }
     ]
   });
