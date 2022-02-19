@@ -1,23 +1,3 @@
-const selfClosingTag = [
-    'area',
-    'base',
-    'br',
-    'col',
-    'embed',
-    'hr',
-    'img',
-    'input',
-    'link',
-    'meta',
-    'param',
-    'source',
-    'track',
-    'wbr',
-    'command',
-    'keygen',
-    'menuitem'
-];
-
 JSON.safeStringify = (obj, indent = 2) => {
     let cache = [];
     const retVal = JSON.stringify(
@@ -189,7 +169,25 @@ class FastHTMLParser{
                 all.push(res);
     
                 //Push to parent if not closed
-                if(!element.includes("/>") && !selfClosingTag.includes(tag)) parents.push(res);
+                if(!element.includes("/>") && ![
+                    'area',
+                    'base',
+                    'br',
+                    'col',
+                    'embed',
+                    'hr',
+                    'img',
+                    'input',
+                    'link',
+                    'meta',
+                    'param',
+                    'source',
+                    'track',
+                    'wbr',
+                    'command',
+                    'keygen',
+                    'menuitem'
+                ].includes(tag)) parents.push(res);
             } else {
                 parents.pop();
             }
