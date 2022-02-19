@@ -1,5 +1,4 @@
 
-
 function mapToConcreteView(html) {
 
 
@@ -8,7 +7,7 @@ function mapToConcreteView(html) {
 function mapToGalleryView(html) {
 
     return JSON.stringify(
-        new (require('fast-html-dom-parser')).FastHTMLParser(html)
+       (new FastHTMLParser(html))
             .getElementsByClassName('movie').slice(0, -1)
             .map(e => {
 
