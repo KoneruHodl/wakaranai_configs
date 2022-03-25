@@ -129,6 +129,9 @@ function getEndpoints() {
         {
             path: '/chapters/{id}',
             type: 'CHAPTER',
+            options: {
+                collectWithConcreteMapping: true
+            },
             mappingFunctionName: 'mapToChapter',
             paths: [
               {
