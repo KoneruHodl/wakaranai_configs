@@ -1,3 +1,6 @@
+function mapToChapter(html) {
+    return (new FastHTMLParser(html)).getElementById("comics").getElementsByTagName("img").map(e => "https://manga.in.ua" + e.getAttribute("data-src"));
+}
 
 function mapToConcreteView(html) {
 
