@@ -25,7 +25,7 @@ function mapToConcreteView(json) {
 }
 
 function mapToGalleryView(json) {
-  let result = JSON.parse(json).result;
+  let result = JSON.parse(json.replaceAll(/	/gi, '')).result;
   return JSON.stringify(result.map(e => {
     return {
       uid: e.id.toString(),
