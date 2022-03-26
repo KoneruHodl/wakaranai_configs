@@ -57,6 +57,21 @@ function getEndpoints() {
       ]
     },
     {
+      path: '/galleries/search',
+      type: 'SEARCH',
+      mappingFunctionName: 'mapToGalleryView',
+      paths: [
+        {
+          name: 'query',
+          type: 'QUERY'
+        },
+        {
+          name: 'page',
+          type: 'PAGINATION'
+        }
+      ]
+    },
+    {
       path: '/gallery/{id}',
       type: 'CONCRETE',
       mappingFunctionName: 'mapToConcreteView',
