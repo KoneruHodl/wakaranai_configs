@@ -60,7 +60,7 @@ function getEndpoints() {
       path: '/galleries/search',
       type: 'SEARCH',
       mappingFunctionName: 'mapToGalleryView',
-      paths: [
+      parameters: [
         {
           name: 'query',
           type: 'QUERY'
@@ -70,7 +70,7 @@ function getEndpoints() {
           type: 'PAGINATION'
         }
       ],
-      parameters: []
+      paths: []
     },
     {
       path: '/gallery/{id}',
