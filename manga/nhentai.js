@@ -69,7 +69,8 @@ function getEndpoints() {
           name: 'page',
           type: 'PAGINATION'
         }
-      ]
+      ],
+      parameters: []
     },
     {
       path: '/gallery/{id}',
