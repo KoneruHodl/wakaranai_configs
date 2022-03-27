@@ -100,7 +100,45 @@ function getHost() {
     return 'https://manga.in.ua';
 }
 
-function getEndpoints() {
+
+function getPostEndpoitns() {
+    return JSON.stringify([
+        {
+            path: '/index.php?do=search',
+            type: 'SEARCH',
+            mappingFunctionName: 'mapToGalleryView',
+            paths: [],
+            parameters: [],
+            payloads: [
+                {
+                    name: 'do',
+                    type: 'STATIC',
+                    staticValue: 'search'
+                },
+                {
+                    name: 'subaction',
+                    type: 'STATIC',
+                    staticValue: 'search'
+                },
+                {
+                    name: 'full_search',
+                    type: 'STATIC',
+                    staticValue: '0'
+                },
+                {
+                    name: 'story',
+                    type: 'QUERY',
+                },
+                {
+                    name: 'search_start',
+                    type: 'PAGINATION'
+                }
+            ]
+        }
+    ]);
+  }
+
+function getGetEndpoints() {
     return JSON.stringify([
         {
             path: '/mangas/page/{page}',
@@ -112,7 +150,8 @@ function getEndpoints() {
                     type: 'PAGINATION'
                 }
             ],
-            parameters: []
+            parameters: [],
+            payloads: []
         },
         {
             path: '/mangas/{id}',
@@ -124,7 +163,8 @@ function getEndpoints() {
                 type: 'ID'
               }
             ],
-            parameters: []
+            parameters: [],
+            payloads: []
         },
         {
             path: '/chapters/{id}',
@@ -139,7 +179,8 @@ function getEndpoints() {
                 type: 'ID'
               }
             ],
-            parameters: []
+            parameters: [],
+            payloads: []
           },
     ]);
 }

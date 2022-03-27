@@ -1,5 +1,5 @@
 function mapToConcreteView(json) {
-  let item = JSON.parse(json);
+  let item = JSON.parse(json.replaceAll(/	/gi, '')).result;
   return JSON.stringify({
     title: {
       pretty: item.title.pretty,
@@ -42,7 +42,13 @@ function getHost() {
   return 'https://nhentai.net/api';
 }
 
-function getEndpoints() {
+function getPostEndpoitns() {
+  return JSON.stringify([
+
+  ]);
+}
+
+function getGetEndpoints() {
   return JSON.stringify([
     {
       path: '/galleries/all',
@@ -54,7 +60,8 @@ function getEndpoints() {
           name: 'page',
           type: 'PAGINATION'
         }
-      ]
+      ],
+      payloads: []
     },
     {
       path: '/galleries/search',
@@ -70,7 +77,8 @@ function getEndpoints() {
           type: 'PAGINATION'
         }
       ],
-      paths: []
+      paths: [],
+      payloads: []
     },
     {
       path: '/gallery/{id}',
@@ -82,7 +90,8 @@ function getEndpoints() {
           type: 'ID'
         }
       ],
-      parameters: []
+      parameters: [],
+      payloads: []
     }
   ]);
 }
