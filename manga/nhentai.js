@@ -42,7 +42,7 @@ function getHost() {
   return 'https://nhentai.net/api';
 }
 
-function getPostEndpoitns() {
+function getPostEndpoints() {
   return JSON.stringify([
 
   ]);

@@ -101,7 +101,7 @@ function getHost() {
 }
 
 
-function getPostEndpoitns() {
+function getPostEndpoints() {
     return JSON.stringify([
         {
             path: '/index.php?do=search',
