@@ -61,7 +61,7 @@ function getGetEndpoints() {
           type: 'PAGINATION'
         }
       ],
-      payloads: []
+      payload: []
     },
     {
       path: '/galleries/search',
@@ -78,7 +78,7 @@ function getGetEndpoints() {
         }
       ],
       paths: [],
-      payloads: []
+      payload: []
     },
     {
       path: '/gallery/{id}',
@@ -91,7 +91,7 @@ function getGetEndpoints() {
         }
       ],
       parameters: [],
-      payloads: []
+      payload: []
     }
   ]);
 }

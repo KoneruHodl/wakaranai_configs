@@ -109,7 +109,7 @@ function getPostEndpoints() {
             mappingFunctionName: 'mapToGalleryView',
             paths: [],
             parameters: [],
-            payloads: [
+            payload: [
                 {
                     name: 'do',
                     type: 'STATIC',
@@ -151,7 +151,7 @@ function getGetEndpoints() {
                 }
             ],
             parameters: [],
-            payloads: []
+            payload: []
         },
         {
             path: '/mangas/{id}',
@@ -164,7 +164,7 @@ function getGetEndpoints() {
               }
             ],
             parameters: [],
-            payloads: []
+            payload: []
         },
         {
             path: '/chapters/{id}',
@@ -180,7 +180,7 @@ function getGetEndpoints() {
               }
             ],
             parameters: [],
-            payloads: []
+            payload: []
           },
     ]);
 }
