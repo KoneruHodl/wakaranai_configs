@@ -48,7 +48,6 @@ function mapToPage(html) {
         ));
 
 }
-
 function mapToGalleryView(html) {
 
     return JSON.stringify(
@@ -83,8 +82,14 @@ function mapToGalleryView(html) {
                 ) {
                     cover = '';
                 } else {
-                    cover = getHost() + e.getElementsByTagName('figure')[0]
+                    let dataSrc =  e.getElementsByTagName('figure')[0]
                         .getElementsByTagName('img')[0].getAttribute('data-src')
+                    if(!dataSrc) {
+                        cover = getHost() + e.getElementsByTagName('figure')[0]
+                        .getElementsByTagName('img')[0].getAttribute('src');
+                    } else {
+                    cover = getHost() + dataSrc;
+                    }
                 }
 
                 return {
