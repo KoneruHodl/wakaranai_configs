@@ -1,5 +1,13 @@
 function mapToConcreteView(json) {
-  let item = JSON.parse(json.replaceAll(/	/gi, '')).result;
+  let item = JSON.parse( json.replace(/\\n/g, "\\n")  
+      .replace(/\\'/g, "\\'")
+      .replace(/\\"/g, '\\"')
+      .replace(/\\&/g, "\\&")
+      .replace(/\\r/g, "\\r")
+      .replace(/\\t/g, "\\t")
+      .replace(/\\b/g, "\\b")
+      .replace(/\\f/g, "\\f")
+      .replace(/	/g, ""));
   return JSON.stringify({
     title: {
       pretty: item.title.pretty,
@@ -25,7 +33,15 @@ function mapToConcreteView(json) {
 }
 
 function mapToGalleryView(json) {
-  let result = JSON.parse(json.replaceAll(/	/gi, '')).result;
+  let result = JSON.parse( json.replace(/\\n/g, "\\n")  
+      .replace(/\\'/g, "\\'")
+      .replace(/\\"/g, '\\"')
+      .replace(/\\&/g, "\\&")
+      .replace(/\\r/g, "\\r")
+      .replace(/\\t/g, "\\t")
+      .replace(/\\b/g, "\\b")
+      .replace(/\\f/g, "\\f")
+      .replace(/	/g, ""));
   return JSON.stringify(result.map(e => {
     return {
       uid: e.id.toString(),
@@ -34,8 +50,8 @@ function mapToGalleryView(json) {
         e.media_id +
         '/thumb.' +
         getImageType(e.images.thumbnail.t),
-    }
-  }))
+    };
+  }));
 }
 
 function getHost() {
