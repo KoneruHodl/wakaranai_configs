@@ -41,7 +41,7 @@ function mapToGalleryView(json) {
       .replace(/\\t/g, "\\t")
       .replace(/\\b/g, "\\b")
       .replace(/\\f/g, "\\f")
-      .replace(/	/g, ""));
+      .replace(/	/g, "")).result;
   return JSON.stringify(result.map(e => {
     return {
       uid: e.id.toString(),
