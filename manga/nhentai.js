@@ -8,11 +8,29 @@ function mapToConcreteView(json) {
       .replace(/\\b/g, "\\b")
       .replace(/\\f/g, "\\f")
       .replace(/	/g, ""));
+
+      let title = {
+        pretty: "",
+        original: ""
+      };
+
+
+      if(item.title) {
+          if(item.title.pretty) {
+            title.pretty = item.title.pretty;
+          } 
+          
+          if(item.title.japanese) {
+            title.original = item.title.japanese;
+          }
+          else if(item.title.english) {
+            title.original = item.title.english;
+          }
+      }
+
+
   return JSON.stringify({
-    title: {
-      pretty: item.title.pretty,
-      original: item.title.japanese
-    },
+    title: title,
     description: '',
     cover: 'https://t5.nhentai.net/galleries/' +
       item.media_id +
@@ -43,9 +61,22 @@ function mapToGalleryView(json) {
       .replace(/\\f/g, "\\f")
       .replace(/	/g, "")).result;
   return JSON.stringify(result.map(e => {
+
+    let title = "";
+
+    if(e.title) {
+      if(e.title.pretty) {
+        title = e.title.pretty;
+      } else if(e.title.japanese) {
+        title = e.title.japanese;
+      } else if(e.title.english) {
+        title = e .title.english;
+      } 
+    }
+
     return {
       uid: e.id.toString(),
-      title: e.title.pretty,
+      title: title,
       cover: 'https://t5.nhentai.net/galleries/' +
         e.media_id +
         '/thumb.' +
