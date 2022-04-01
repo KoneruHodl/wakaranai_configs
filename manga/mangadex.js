@@ -39,6 +39,10 @@ function getGetEndpoints() {
             type: 'GALLERY',
             mappingFunctionName: 'mapToGalleryView',
             paths: [],
+            options: {
+                collectWithConcreteMapping: false,
+                offsetDefaultIncrement: 10
+            },
             parameters: [
                 {
                     name: 'offset',
