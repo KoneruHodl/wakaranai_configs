@@ -1,4 +1,5 @@
 async function mapToGalleryView(json) {
+    console.log(json);
     let result = json.data;
 
 
